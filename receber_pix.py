@@ -1,10 +1,7 @@
 from pynubank import Nubank
-from datetime import datetime
 import os 
 import dotenv
 import random
-import qrcode
-from PIL import Image
 
 dotenv.load_dotenv(dotenv.find_dotenv())
 
@@ -14,8 +11,6 @@ senha = os.getenv('SENHA')
 nu.authenticate_with_cert(cpf, senha, './cert.p12')
 
 data = nu.get_available_pix_keys()
-
-code = random.randrange(1, 9999) #Código único da tansação é necessário para o get_pix_identifier
 
 for key in data['keys']:
     if key['kind'] == 'EVP':
